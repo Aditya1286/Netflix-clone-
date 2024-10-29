@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #141414;
+            color: white;
+        }
+
+        .header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #e50914;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .hero {
+            height: 80vh;
+            background: url('/api/placeholder/1920/1080') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .play-button {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .more-info {
+            background-color: rgba(109, 109, 110, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .row {
+            margin: 20px 40px;
+        }
+
+        .row-header {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .row-posters {
+            display: flex;
+            overflow-x: scroll;
+            padding: 20px 0;
+            gap: 10px;
+        }
+
+        .row-posters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .poster {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .poster:hover {
+            transform: scale(1.08);
+        }
+
+        .featured-show {
+            width: 300px;
+            height: 450px;
+        }
+
+        .search-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .featured-content {
+            padding: 20px 40px;
+            background: linear-gradient(to bottom, #141414 0%, #000000 100%);
+        }
+
+        .featured-info {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .featured-details {
+            flex: 1;
+        }
+
+        .rating {
+            color: #e50914;
+            margin-bottom: 10px;
+        }
+
+        .meta-info {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">NETFLIX</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">TV Shows</a>
+            <a href="#">Movies</a>
+            <a href="#">New & Popular</a>
+            <a href="#">My List</a>
+            <span class="search-icon">🔍</span>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="https://c4.wallpaperflare.com/wallpaper/462/921/235/stranger-things-5k-wallpaper-preview.jpg" alt="Stranger Things" class="hero-image">
+        <div class="hero-content">
+            <h1 class="title">Stranger Things</h1>
+            <p class="description">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and a strange little girl.</p>
+            <button class="play-button">▶ Play</button>
+            <button class="more-info">ℹ More Info</button>
+        </div>
+    </section>
+
+    <section class="featured-content">
+        <h2 class="row-header">Featured on Netflix</h2>
+        <div class="featured-info">
+            <img src="https://imgix.ranker.com/user_node_img/4269/85375973/original/85375973-photo-u391799034?w=300&q=75" alt="Narcos" class="featured-show">
+            <div class="featured-details">
+                <h2 class="title">Narcos</h2>
+                <div class="rating">★★★★★ 2015 TV-MA 1 Season</div>
+                <p class="description">First they got the coke. Then they got the money. Now the Colombian cartels want the power. Let the drug wars begin.A Netflix series that follows the rise of the cocaine trade in Colombia and the war on drugs in the late 1980s. The series focuses on the story of Pablo Escobar, the leader of the Medellín Cartel, and his interactions with the Drug Enforcement Administration (DEA). The series also follows the DEA as they attempt to shut down the Cali Cartel after Escobar's fall. The series was created by Chris Brancato, Carlo Bernard, and Doug Miro</p>
+                <p class="meta-info">Director José Padilha and star Wagner Moura first teamed up in "Elite Squad," a 2008 Berlin Film Festival award winner.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="row">
+        <h2 class="row-header">Popular on Netflix</h2>
+        <div class="row-posters">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTinxmcchXe_Db6mBwOiBJgoGVQD3XctIswQ&s" alt="Murder Mystery" class="poster">
+            <img src="https://serializd-tmdb-images.b-cdn.net/t/p/w300/qahu9UwZVvoJLIKQLIRGLebhhqX.jpg" alt="Our Planet" class="poster">
+            <img src="https://www.aseeralkotb.org/storage/posters/%D8%AF%D9%85%D8%A8%D9%84%D9%8A%D9%86-143.jpg" alt="Dumplin" class="poster">
+            <img src="https://bestsimilar.com/img/movie/thumb/9f/16599.jpg" alt="The Irishman" class="poster">
+            <img src="https://m.media-amazon.com/images/M/MV5BNjI3ZGRhNDYtNDFjOS00OGFlLTg4NTEtYjZjYTViY2ZiMzBkXkEyXkFqcGc@._V1_QL75_UX190_CR0,0,190,281_.jpg" alt="The Good Place" class="poster">
+            <img src="https://cdn.flixboss.com/80184625/posters/AAAABfiJBrcL-fJFVBwotA68b47AxYpMh5cuhcYga-3ELwxyBjVj8-NN8nephcNVlVJU16WhTDpf9YRgZ90_rhb2LSNlRHDP_urBmchEfe30izFhpruKUcCdQ0QqHsU.jpg" alt="Y nadie más que tú" class="poster">
+        </div>
+    </section>
+
+    <section class="row">
+        <h2 class="row-header">Netflix Originals</h2>
+        <div class="row-posters">
+            <img src="https://serializd-tmdb-images.b-cdn.net/t/p/w300/e5WNFWA1ZLnHxpr9xQdZMhEpvNo.jpg" alt="Black Lightning" class="poster">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwLmK7tySBHNxEuw9wR47OVch66-j1fTauEg&s" alt="Rick and Morty" class="poster">
+            <img src="https://media.glamour.com/photos/5b437b23d79d6f51a2bce5ea/master/w_1600%2Cc_limit/OITNB_S6_Vertical-Main_PRE_US.jpg" alt="Orange is the New Black" class="poster">
+            <img src="https://m.media-amazon.com/images/M/MV5BMzIxNzUwYzctOGJjZS00NmRkLWEwY2ItZTU2NDhlZjJlMjU4XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" alt="Fullmetal Alchemist" class="poster">
+            <img src="https://pics.filmaffinity.com/Jonas_Jonas_L_A_TV_Series-124805280-mmed.jpg" alt="The Joel McHale Show" class="poster">
+            <img src="https://resizing.flixster.com/XHW1A-oLxeI8Qw8JZAcaltS2BCU=/fit-in/705x460/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p14243449_b_v8_aa.jpg" alt="The Sinner" class="poster">
+        </div>
+    </section>
+
+    <section class="row">
+        <h2 class="row-header">Trending Now</h2>
+        <div class="row-posters">
+            <img src="https://resizing.flixster.com/uBuyh8yVj4nLLedFNlqmjihtnc0=/fit-in/705x460/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p9691630_b_v13_ai.jpg" alt="House of Cards" class="poster">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnXCDgb45upYZs2eMVYPpovj-9ZkjGdO8SbQ&s" alt="Daredevil" class="poster">
+            <img src="https://static.wikia.nocookie.net/headhuntersholosuite/images/9/92/Jessica_Jones_-_Season_1.jpg/revision/latest?cb=20160928122900" alt="Jessica Jones" class="poster">
+            <img src="https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Breaking Bad" class="poster">
+            <img src="https://images.penguinrandomhouse.com/cover/9780593126066" alt="Love" class="poster">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTntoTJQxjm-ZrKk9v8Fys1e_Xz8VvEDGQldw&s" alt="Home" class="poster">
+        </div>
+    </section>
+
+    <script>
+        // Add scroll behavior to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = '#141414';
+            } else {
+                header.style.backgroundColor = 'transparent';
+            }
+        });
+
+        // Add hover effect to posters
+        const posters = document.querySelectorAll('.poster');
+        posters.forEach(poster => {
+            poster.addEventListener('mouseenter', () => {
+                poster.style.transform = 'scale(1.08)';
+            });
+            poster.addEventListener('mouseleave', () => {
+                poster.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add click handlers for buttons
+        document.querySelector('.play-button').addEventListener('click', () => {
+            alert('Playing Stranger Things');
+        });
+
+        document.querySelector('.more-info').addEventListener('click', () => {
+            alert('Showing more information about Stranger Things');
+        });
+    </script>
+</body>
+</html>
